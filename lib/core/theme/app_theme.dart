@@ -94,4 +94,51 @@ class AppTheme {
     ),
     dividerTheme: const DividerThemeData(thickness: 1),
   );
+
+  // this is newer
+
+  static const Color primaryBlue = Color(0xFF2575FC);
+  static const Color backgroundDark = Color(0xFF0A0E1A);
+  static const Color cardDark = Color(0xFF111827);
+  static const Color accentGreen = Color(0xFF10B981);
+  static const Color accentOrange = Color(0xFFF59E0B);
+  static const Color accentPurple = Color(0xFF8B5CF6);
+
+  // Text Colors
+  static const Color textPrimary = Colors.white;
+  static const Color textSecondary = Color(0xFF9CA3AF);
+
+  static ThemeData customTheme = ThemeData(
+    brightness: Brightness.dark,
+    scaffoldBackgroundColor: backgroundDark,
+    primaryColor: primaryBlue,
+    cardColor: cardDark,
+    hintColor: textSecondary,
+    fontFamily:
+        'SF Pro Display', // Ensure this is added to pubspec.yaml if desired
+    // Bottom Navigation Theme
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: cardDark,
+      selectedItemColor: primaryBlue,
+      unselectedItemColor: textSecondary,
+      type: BottomNavigationBarType.fixed,
+      elevation: 8,
+    ),
+
+    // Text Theme mapping
+    textTheme: const TextTheme(
+      headlineMedium: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: textPrimary,
+      ),
+      titleMedium: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: textPrimary,
+      ),
+      bodyLarge: TextStyle(fontSize: 14, color: textPrimary),
+      bodyMedium: TextStyle(fontSize: 12, color: textSecondary),
+    ),
+  );
 }

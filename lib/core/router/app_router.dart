@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod_clean_architecture/core/constants/app_constants.dart';
+import 'package:flutter_riverpod_clean_architecture/core/layout/main_scaffold.dart';
 import 'package:flutter_riverpod_clean_architecture/core/providers/localization_providers.dart';
 import 'package:flutter_riverpod_clean_architecture/core/router/locale_aware_router.dart';
 import 'package:flutter_riverpod_clean_architecture/examples/localization_assets_demo.dart';
 import 'package:flutter_riverpod_clean_architecture/features/auth/presentation/screens/login_screen.dart';
 import 'package:flutter_riverpod_clean_architecture/features/auth/presentation/screens/register_screen.dart';
+import 'package:flutter_riverpod_clean_architecture/features/dashboard/presentation/screens/dashboard_screen.dart';
+import 'package:flutter_riverpod_clean_architecture/features/holdings/presentation/screens/holdings_screen.dart';
 import 'package:flutter_riverpod_clean_architecture/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter_riverpod_clean_architecture/features/auth/presentation/providers/auth_provider.dart';
 import 'package:flutter_riverpod_clean_architecture/features/settings/presentation/screens/settings_screen.dart';
 import 'package:flutter_riverpod_clean_architecture/features/settings/presentation/screens/language_settings_screen.dart';
+import 'package:flutter_riverpod_clean_architecture/features/watchlist/presentation/screens/watchlist_screen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod_clean_architecture/features/chat/presentation/screens/chat_screen.dart';
 import 'package:flutter_riverpod_clean_architecture/features/survey/presentation/screens/survey_screen.dart';
@@ -44,7 +48,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       // If logged in and going to login, redirect to home
       if (isLoggedIn && (isGoingToLogin || isGoingToRegister)) {
-        return AppConstants.homeRoute;
+        return AppConstants.dashboard;
       }
 
       // No redirect needed
@@ -56,6 +60,33 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: AppConstants.homeRoute,
         name: 'home',
         builder: (context, state) => const HomeScreen(),
+      ),
+
+      // GoRoute(
+      //   path: AppConstants.dashboard,
+      //   name: 'dashboard',
+      //   builder: (context, state) => const DashboardScreen(),
+      // ),
+      ShellRoute(
+        builder: (context, state, child) => MainScaffold(child: child),
+        routes: [
+          GoRoute(
+            path: AppConstants.dashboard,
+            builder: (context, state) => const DashboardScreen(),
+          ),
+          GoRoute(
+            path: AppConstants.holding,
+            builder: (context, state) => const HoldingsScreen(),
+          ),
+          GoRoute(
+            path: AppConstants.watchlist,
+            builder: (context, state) => const WatchlistScreen(),
+          ),
+          GoRoute(
+            path: AppConstants.holdingDetail,
+            builder: (context, state) => const HoldingsScreen(),
+          ),
+        ],
       ),
 
       // Login route
@@ -112,7 +143,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: AppConstants.initialRoute,
         name: 'initial',
         redirect: (context, state) => authState.isAuthenticated
-            ? AppConstants.homeRoute
+            ? AppConstants.dashboard
             : AppConstants.loginRoute,
       ),
     ],

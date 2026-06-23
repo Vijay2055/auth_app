@@ -69,7 +69,8 @@ class MyApp extends ConsumerWidget {
       child: AccessibilityWrapper(
         child: MaterialApp.router(
           title: AppConstants.appName,
-          theme: AppTheme.lightTheme,
+          // theme: AppTheme.lightTheme,
+          theme: AppTheme.customTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: themeMode,
           routerConfig: router,

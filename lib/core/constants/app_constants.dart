@@ -22,6 +22,10 @@ class AppConstants {
   // Route constants
   static const String initialRoute = '/';
   static const String homeRoute = '/home';
+  static const String dashboard = '/dashboard';
+  static const String holding = '/holding';
+  static const String watchlist = '/watchlist';
+  static const String holdingDetail = '/holding/detail';
   static const String chatRoute = '/chat';
   static const String surveyRoute = '/survey';
   static const String loginRoute = '/login';
